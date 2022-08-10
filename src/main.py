@@ -4,9 +4,9 @@ from file_upload.file_upload import file_upload_epa, file_upload_tbi, file_uploa
 
 
 @click.command()
-@click.option("--org", prompt="Organization Name")
+@click.option("--org", "-o", type=click.Choice(["epa", "usgs", "tbi"]), prompt="Organization Name")
 def get_org(org):
-    click.echo(f"{org} is the organization")
+    click.echo(f"Organization Selected: {org}")
     return org
 
 
