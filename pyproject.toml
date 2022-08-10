@@ -17,3 +17,37 @@ flake8 = "^5.0.4"
 [build-system]
 requires = ["poetry-core>=1.0.0"]
 build-backend = "poetry.core.masonry.api"
+
+[tool.isort]
+src_paths = ["src", "tests"]
+multi_line_output=3
+include_trailing_comma="True"
+force_grid_wrap=0
+use_parentheses="True"
+line_length=120
+skip=".vscode, .tox, .git"
+default_section="THIRDPARTY"
+sections="FUTURE,STDLIB,THIRDPARTY,FIRSTPARTY,LOCALFOLDER"
+
+[tool.pytest.ini_options]
+addopts = "--strict-markers -v"
+markers = ["unit_test",
+]
+testpaths = "tests"
+
+[tool.black]
+line-length = 120
+exclude = '''
+/(
+  # Directories
+    \.eggs
+  | \.git
+  | \.vscode
+  | \.tox
+  | \.venv
+  | \.ropeproject
+  | build
+  | venv
+  | .*egg-info
+)/
+'''
