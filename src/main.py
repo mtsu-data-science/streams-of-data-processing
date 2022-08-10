@@ -1,16 +1,26 @@
+import click
+
 from file_upload.file_upload import file_upload_epa, file_upload_tbi, file_upload_usgs
 
 
-def main():
-    org_config = "epa"
+@click.command()
+@click.option("--org", prompt="Organization Name")
+def get_org(org):
+    click.echo(f"{org} is the organization")
+    return org
 
-    if org_config == "epa":
+
+def main():
+
+    org = get_org(standalone_mode=False)
+
+    if org == "epa":
         org_file_upload = file_upload_epa("epa_file.txt", "epa_bucket")
 
-    if org_config == "usgs":
+    if org == "usgs":
         org_file_upload = file_upload_usgs("usgs_file.txt", "usgs_bucket")
 
-    if org_config == "tbi":
+    if org == "tbi":
         org_file_upload = file_upload_tbi("tbi_file.txt", "tbi_bucket")
 
     org_file_upload.print_file_name()
