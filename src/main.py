@@ -1,6 +1,6 @@
 import click
-
-from file_upload.file_upload import file_upload_epa, file_upload_tbi, file_upload_usgs
+from database.setup_db import setup_database
+from processing.processing_epa_ysi import processing_epa_ysi_log
 
 
 @click.command()
@@ -14,17 +14,11 @@ def main():
 
     org = get_org(standalone_mode=False)
 
+    setup_database()
+
     if org == "epa":
-        org_file_upload = file_upload_epa("epa_file.txt", "epa_bucket")
-
-    if org == "usgs":
-        org_file_upload = file_upload_usgs("usgs_file.txt", "usgs_bucket")
-
-    if org == "tbi":
-        org_file_upload = file_upload_tbi("tbi_file.txt", "tbi_bucket")
-
-    org_file_upload.print_file_name()
-    org_file_upload.print_s3_bucket()
+        org_file_upload = processing_epa_ysi_log("epa_file.txt", "epa_bucket", "ysi")
+        org_file_upload.print_sensor_type()
 
 
 if __name__ == "__main__":
