@@ -1,0 +1,382 @@
+{
+    "skip_rows": 1,
+    "column_names": [
+        "date_time",
+        "temperature_c",
+        "specific_conductivity_ms",
+        "depth_m",
+        "ph",
+        "ph_mv",
+        "orp_mv",
+        "turbidity_ntu",
+        "chlorophyll_ug_l",
+        "dissolved_oxygen_saturation_percentage",
+        "dissolved_oxygen_mg_l",
+        "resistance_mohm_cm"
+    ],
+    "dtypes": {
+        "date_time": "str",
+        "temperature_c": "float64",
+        "specific_conductivity_ms": "float64",
+        "depth_m": "float64",
+        "ph": "float64",
+        "ph_mv": "float64",
+        "orp_mv": "float64",
+        "turbidity_ntu": "float64",
+        "chlorophyll_ug_l": "float64",
+        "dissolved_oxygen_saturation_percentage": "float64",
+        "dissolved_oxygen_mg_l": "float64",
+        "resistance_mohm_cm": "float64"
+    },
+    "data_primary_key_columns": [
+        "site_name",
+        "station_name",
+        "unit_serial_number",
+        "deploy_date",
+        "date_time"
+    ],
+    "sensor_config_key_columns": [
+        "unit_name",
+        "unit_serial_number"
+    ],
+    "sensor_deployment_key_columns": [
+        "sensor_config_key",
+        "site_name",
+        "station_name",
+        "deploy_date"
+    ],
+    "pre_sensor_deployment_calibration_key_columns": [
+        "sensor_deployment_key",
+        "deploy_date",
+        "pre_deployment_calibration_date",
+        "pre_deployment_calibration_time"
+    ],
+    "post_sensor_deployment_calibration_key_columns": [
+        "sensor_deployment_key",
+        "retrieval_date",
+        "post_deployment_calibration_date",
+        "post_deployment_calibration_time"
+    ],
+    "validation_check": {
+        "deployment_info": [
+            "unit_name",
+            "site_name",
+            "station_name",
+            "sensor_data_file_name",
+            "deploy_date",
+            "time_in_water",
+            "deploy_depth_to_bottom_m",
+            "deploy_depth_to_bottom_value",
+            "deploy_depth_to_bottom_unit",
+            "retrieval_date",
+            "retrieval_time_out_of_water",
+            "retrieval_depth_to_bottom_m",
+            "retrieval_depth_to_bottom_value",
+            "retrieval_depth_to_bottom_unit",
+            "retrieval_location_latitude",
+            "retrieval_location_longitude",
+            "deploy_location_latitude",
+            "deploy_location_longitude"
+        ],
+        "calibration_check": [
+            "pre_deployment_calibration_start_time",
+            "pre_deployment_calibration_end_time",
+            "post_deployment_calibration_date",
+            "post_deployment_calibration_start_time",
+            "post_deployment_calibration_end_time"
+        ],
+        "station_info": [
+            ""
+        ]
+    },
+    "current_log_sheet_schema": "2",
+    "sensor_log_ysi_schema_v2": {
+        "unit_name": "C3",
+        "unit_serial_number": "H3",
+        "site_name": "B4",
+        "station_name": "H4",
+        "sensor_data_file_name": "H5",
+        "deploy_date": "C12",
+        "time_in_water": "C13",
+        "deploy_depth_to_bottom_m": "C14",
+        "deploy_location_latitude": "H13",
+        "deploy_location_longitude": "H14",
+        "on_station_date_unit": "A17",
+        "on_station_date_value": "A18",
+        "on_station_time_value": "B18",
+        "on_station_temp_unit": "C17",
+        "on_station_temp_value": "C18",
+        "on_station_spec_cond_unit": "D17",
+        "on_station_spec_cond_value": "D18",
+        "on_station_depth_unit": "E17",
+        "on_station_depth_value": "E18",
+        "on_station_ph_value": "F18",
+        "on_station_orp_unit": "G17",
+        "on_station_orp_value": "G18",
+        "on_station_turbidity_value": "H18",
+        "on_station_chlor_value": "I18",
+        "on_station_dissolved_oxygen_unit": "J17",
+        "on_station_dissolved_oxygen_value": "J18",
+        "off_station_date_unit": "A21",
+        "off_station_date_value": "A22",
+        "off_station_time_value": "B22",
+        "off_station_temp_unit": "C21",
+        "off_station_temp_value": "C22",
+        "off_station_spec_cond_unit": "D21",
+        "off_station_spec_cond_value": "D22",
+        "off_station_depth_unit": "E21",
+        "off_station_depth_value": "E22",
+        "off_station_ph_value": "F22",
+        "off_station_orp_unit": "G21",
+        "off_station_orp_value": "G22",
+        "off_station_turbidity_value": "H22",
+        "off_station_chlor_value": "I22",
+        "off_station_dissolved_oxygen_unit": "J21",
+        "off_station_dissolved_oxygen_value": "J22",
+        "retrieval_date": "C24",
+        "retrieval_time_out_of_water": "C25",
+        "retrieval_depth_to_bottom_m": "C26",
+        "retrieval_location_latitude": "H13",
+        "retrieval_location_longitude": "H14",
+        "pre_deployment_calibration_date": "E6",
+        "pre_deployment_calibration_time": "H6",
+        "post_deployment_calibration_date": "E27",
+        "post_deployment_calibration_time": "H27"
+    },
+    "sensor_calibration_ysi_schema_v2": {
+        "pre_deployment_ph_7": {
+            "parameter": "ph",
+            "actual": "B9"
+        },
+        "pre_deployment_ph_10": {
+            "parameter": "ph",
+            "actual": "C9"
+        },
+        "pre_deployment_orp": {
+            "parameter": "orp",
+            "actual": "D9"
+        },
+        "pre_deployment_turbidity_126": {
+            "parameter": "turbidity",
+            "actual": "E9"
+        },
+        "pre_deployment_turbidity_0": {
+            "parameter": "turbidity",
+            "actual": "F9"
+        },
+        "pre_deployment_dissolved_oxygen": {
+            "parameter": "dissolved_oxygen",
+            "actual": "G9"
+        },
+        "pre_deployment_conductivity": {
+            "parameter": "conductivity",
+            "actual": "H9"
+        },
+        "pre_deployment_temperature": {
+            "parameter": "temperature",
+            "actual": "I9"
+        },
+        "pre_deployment_chlorophyll": {
+            "parameter": "chlorophyll",
+            "actual": "J9"
+        },
+        "post_deployment_ph_7": {
+            "parameter": "ph",
+            "actual": "B30"
+        },
+        "post_deployment_ph_10": {
+            "parameter": "ph",
+            "actual": "C30"
+        },
+        "post_deployment_orp": {
+            "parameter": "orp",
+            "actual": "D30"
+        },
+        "post_deployment_turbidity_126": {
+            "parameter": "turbidity",
+            "actual": "E30"
+        },
+        "post_deployment_turbidity_0": {
+            "parameter": "turbidity",
+            "actual": "F30"
+        },
+        "post_deployment_dissolved_oxygen": {
+            "parameter": "dissolved_oxygen",
+            "actual": "G30"
+        },
+        "post_deployment_conductivity": {
+            "parameter": "conductivity",
+            "actual": "H30"
+        },
+        "post_deployment_temperature": {
+            "parameter": "temperature",
+            "actual": "I30"
+        },
+        "post_deployment_chlorophyll": {
+            "parameter": "chlorophyll",
+            "actual": "J30"
+        }
+    },
+    "log_sheet_files_old": {
+        "YSI Use Digital Record Log LF02 Summer2020.xlsx": "1",
+        "YSI Use Digital Record Log PP02 Summer2020.xlsx": "1",
+        "YSI Use Digital Record Log PP04 Summer2020.xlsx": "1"
+    },
+    "sensor_log_ysi_schema_v1": {
+        "unit_name": "C3",
+        "unit_serial_number": "H3",
+        "site_name": "C4",
+        "station_name": "H4",
+        "sensor_data_file_name": "H5",
+        "deploy_date": "C13",
+        "time_in_water": "C14",
+        "deploy_depth_to_bottom_value": "C15",
+        "deploy_depth_to_bottom_unit": "E15",
+        "deploy_location_latitude": "H14",
+        "deploy_location_longitude": "H15",
+        "on_station_date_unit": "A18",
+        "on_station_date_value": "A19",
+        "on_station_time_value": "B19",
+        "on_station_temp_unit": "C18",
+        "on_station_temp_value": "C19",
+        "on_station_spec_cond_unit": "D18",
+        "on_station_spec_cond_value": "D19",
+        "on_station_depth_unit": "E18",
+        "on_station_depth_value": "E19",
+        "on_station_ph_value": "F19",
+        "on_station_orp_unit": "G18",
+        "on_station_orp_value": "G19",
+        "on_station_turbidity_value": "H19",
+        "on_station_chlor_value": "I19",
+        "on_station_dissolved_oxygen_unit": "J18",
+        "on_station_dissolved_oxygen_value": "J19",
+        "off_station_date_unit": "A22",
+        "off_station_date_value": "A23",
+        "off_station_time_value": "B23",
+        "off_station_temp_unit": "C22",
+        "off_station_temp_value": "C23",
+        "off_station_spec_cond_unit": "D22",
+        "off_station_spec_cond_value": "D23",
+        "off_station_depth_unit": "E22",
+        "off_station_depth_value": "E23",
+        "off_station_ph_value": "F23",
+        "off_station_orp_unit": "G22",
+        "off_station_orp_value": "G23",
+        "off_station_turbidity_value": "H23",
+        "off_station_chlor_value": "I23",
+        "off_station_dissolved_oxygen_unit": "J22",
+        "off_station_dissolved_oxygen_value": "J23",
+        "retrieval_date": "C25",
+        "retrieval_time_out_of_water": "C26",
+        "retrieval_depth_to_bottom_value": "C27",
+        "retrieval_depth_to_bottom_unit": "E27",
+        "retrieval_location_latitude": "H26",
+        "retrieval_location_longitude": "H27",
+        "pre_deployment_calibration_date": "F6",
+        "pre_deployment_calibration_time": "H6",
+        "post_deployment_calibration_date": "F28",
+        "post_deployment_calibration_time": "H28"
+    },
+    "sensor_calibration_ysi_schema_v1": {
+        "pre_deployment_ph_7": {
+            "parameter": "ph",
+            "actual": "B10"
+        },
+        "pre_deployment_ph_10": {
+            "parameter": "ph",
+            "actual": "C10"
+        },
+        "pre_deployment_orp": {
+            "parameter": "orp",
+            "actual": "D10"
+        },
+        "pre_deployment_turbidity_126": {
+            "parameter": "turbidity",
+            "actual": "E10"
+        },
+        "pre_deployment_turbidity_0": {
+            "parameter": "turbidity",
+            "actual": "F10"
+        },
+        "pre_deployment_dissolved_oxygen": {
+            "parameter": "dissolved_oxygen",
+            "actual": "G10"
+        },
+        "pre_deployment_conductivity": {
+            "parameter": "conductivity",
+            "actual": "H10"
+        },
+        "pre_deployment_temperature": {
+            "parameter": "temperature",
+            "actual": "I10"
+        },
+        "pre_deployment_chlorophyll": {
+            "parameter": "chlorophyll",
+            "actual": "J10"
+        },
+        "post_deployment_ph_7": {
+            "parameter": "ph",
+            "actual": "B32"
+        },
+        "post_deployment_ph_10": {
+            "parameter": "ph",
+            "actual": "C32"
+        },
+        "post_deployment_orp": {
+            "parameter": "orp",
+            "actual": "D32"
+        },
+        "post_deployment_turbidity_126": {
+            "parameter": "turbidity",
+            "actual": "E32"
+        },
+        "post_deployment_turbidity_0": {
+            "parameter": "turbidity",
+            "actual": "F32"
+        },
+        "post_deployment_dissolved_oxygen": {
+            "parameter": "dissolved_oxygen",
+            "actual": "G32"
+        },
+        "post_deployment_conductivity": {
+            "parameter": "conductivity",
+            "actual": "H32"
+        },
+        "post_deployment_temperature": {
+            "parameter": "temperature",
+            "actual": "I32"
+        },
+        "post_deployment_chlorophyll": {
+            "parameter": "chlorophyll",
+            "actual": "J32"
+        }
+    },
+    "sensor_log_time_v1": {
+        "deploy_date_time_et_tz": {
+            "type": "sep",
+            "date": "deploy_date",
+            "time": "time_in_water",
+            "zone": "US/Eastern"
+        },
+        "retrieval_date_time_et_tz": {
+            "type": "sep",
+            "date": "retrieval_date",
+            "time": "retrieval_time_out_of_water",
+            "zone": "US/Eastern"
+        }
+    },
+    "sensor_log_time_v2": {
+        "deploy_date_time_et_tz": {
+            "type": "sep",
+            "date": "deploy_date",
+            "time": "time_in_water",
+            "zone": "US/Eastern"
+        },
+        "retrieval_date_time_et_tz": {
+            "type": "sep",
+            "date": "retrieval_date",
+            "time": "retrieval_time_out_of_water",
+            "zone": "US/Eastern"
+        }
+    }
+}

@@ -1,24 +1,38 @@
-import click
-from database.setup_db import setup_database
-from processing.processing_epa_ysi import processing_epa_ysi_log
+import argparse
+import os
 
-
-@click.command()
-@click.option("--org", "-o", type=click.Choice(["epa", "usgs", "tbi"]), prompt="Organization Name")
-def get_org(org):
-    click.echo(f"Organization Selected: {org}")
-    return org
+from database.setup_database import setup_database
+from OrganizationProcessing.OrganizationMsds.OrganizationMsds import OrganizationMsds
 
 
 def main():
 
-    org = get_org(standalone_mode=False)
+    parser = argparse.ArgumentParser(description="Organization MSDS")
+    parser.add_argument("--org", help="Organization", required=True)
+    parser.add_argument("--filepath", help="Organization", required=True)
+    # parser.add_argument("--filetype", help="Organization", required=True)
+
+    args = parser.parse_args()
 
     setup_database()
 
-    if org == "epa":
-        org_file_upload = processing_epa_ysi_log("epa_file.txt", "epa_bucket", "ysi")
-        org_file_upload.print_sensor_type()
+    print(os.getcwd())
+
+    if args.org == "epa":
+        org_object = OrganizationMsds()
+
+    file_path_to_files = []
+
+    for file in os.listdir(args.filepath):
+        cur_file_path = f"{args.filepath}/{file}"
+        if os.path.isfile(cur_file_path) and file != ".gitignore":
+            file_path_to_files.append(os.path.abspath(cur_file_path))
+
+    print(file_path_to_files)
+
+    # org_object.upload_files_to_data_warehouse(file_path_to_files, args.filetype)
+    org_object.upload_files_to_data_warehouse(file_path_to_files, "log-sheet")
+    org_object.upload_files_to_data_warehouse(file_path_to_files, "sensor")
 
 
 if __name__ == "__main__":

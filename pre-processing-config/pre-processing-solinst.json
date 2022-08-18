@@ -1,0 +1,201 @@
+{
+    "skip_rows": 14,
+    "column_names": [
+        "date",
+        "time",
+        "ms",
+        "level",
+        "temperature",
+        "conductivity"
+    ],
+    "encoding": "cp1252",
+    "data_primary_key_columns": [
+        "site_name",
+        "station_name",
+        "unit_serial_number",
+        "deploy_date",
+        "date",
+        "time"
+    ],
+    "sensor_config_key_columns": [
+        "unit_name",
+        "unit_serial_number"
+    ],
+    "sensor_deployment_key_columns": [
+        "sensor_config_key",
+        "site_name",
+        "station_name",
+        "deploy_date"
+    ],
+    "pre_sensor_deployment_calibration_key_columns": [
+        "sensor_deployment_key",
+        "deploy_date",
+        "pre_deployment_ice_bucket_date_in_bucket",
+        "pre_deployment_ice_bucket_time_in_bucket",
+        "pre_deployment_ice_bucket_time_out_bucket"
+    ],
+    "post_sensor_deployment_calibration_key_columns": [
+        "sensor_deployment_key",
+        "retrieval_date",
+        "post_deployment_ice_bucket_date_in_bucket",
+        "post_deployment_ice_bucket_time_in_bucket",
+        "post_deployment_ice_bucket_time_out_bucket"
+    ],
+    "validation_check": {
+        "deployment_info": [
+            "unit_name",
+            "site_name",
+            "station_name",
+            "sensor_data_file_name",
+            "deploy_date",
+            "time_in_water",
+            "deploy_depth_to_bottom_m",
+            "retrieval_date",
+            "retrieval_time_out_of_water",
+            "retrieval_depth_to_bottom_m",
+            "deploy_depth_to_bottom_value",
+            "deploy_depth_to_bottom_unit",
+            "retrieval_location_latitude",
+            "retrieval_location_longitude",
+            "deploy_location_latitude",
+            "deploy_location_longitude"
+        ],
+        "calibration_check": [
+            "pre_deployment_ice_bucket_expected_conductivity",
+            "pre_deployment_ice_bucket_read_conductivity",
+            "pre_deployment_ice_bucket_date_in_bucket",
+            "pre_deployment_ice_bucket_time_in_bucket",
+            "pre_deployment_ice_bucket_date_out_bucket",
+            "pre_deployment_ice_bucket_time_out_bucket",
+            "post_deployment_ice_bucket_date_in_bucket",
+            "post_deployment_ice_bucket_time_in_bucket",
+            "post_deployment_ice_bucket_date_out_bucket",
+            "post_deployment_ice_bucket_time_out_bucket",
+            "post_deployment_ice_bucket_expected_conductivity",
+            "post_deployment_ice_bucket_read_conductivity"
+        ],
+        "station_info": [
+            ""
+        ]
+    },
+    "current_log_sheet_schema": "1",
+    "sensor_log_solinst_schema_v1": {
+        "unit_name": "C3",
+        "unit_serial_number": "H3",
+        "site_name": "B4",
+        "station_name": "H4",
+        "sensor_data_file_name": "H5",
+        "pre_deployment_ice_bucket_expected_conductivity": "F7",
+        "pre_deployment_ice_bucket_read_conductivity": "H7",
+        "pre_deployment_ice_bucket_date_in_bucket": "B8",
+        "pre_deployment_ice_bucket_time_in_bucket": "E8",
+        "pre_deployment_ice_bucket_date_out_bucket": "G8",
+        "pre_deployment_ice_bucket_time_out_bucket": "J8",
+        "pre_deployment_ice_bucket_date_ice_added": "B9",
+        "pre_deployment_ice_bucket_time_ice_added": "E9",
+        "pre_deployment_ice_bucket_date_air_added": "G9",
+        "pre_deployment_ice_bucket_time_air_added": "J9",
+        "pre_deployment_ice_bucket_temp_1": "B10",
+        "pre_deployment_ice_bucket_temp_date_1": "D10",
+        "pre_deployment_ice_bucket_temp_time_1": "G10",
+        "pre_deployment_ice_bucket_temp_2": "B11",
+        "pre_deployment_ice_bucket_temp_date_2": "D11",
+        "pre_deployment_ice_bucket_temp_time_2": "G11",
+        "deploy_date": "C13",
+        "time_in_water": "C14",
+        "deploy_depth_to_bottom_m": "C15",
+        "deploy_location_latitude": "H14",
+        "deploy_location_longitude": "H15",
+        "on_station_date_unit": "A18",
+        "on_station_date_value": "A19",
+        "on_station_time_value": "B19",
+        "on_station_temp_unit": "C18",
+        "on_station_temp_value": "C19",
+        "on_station_spec_cond_unit": "D18",
+        "on_station_spec_cond_value": "D19",
+        "on_station_depth_unit": "E18",
+        "on_station_depth_value": "E19",
+        "on_station_ph_value": "F19",
+        "on_station_orp_unit": "G18",
+        "on_station_orp_value": "G19",
+        "on_station_turbidity_value": "H19",
+        "on_station_chlor_value": "I19",
+        "on_station_dissolved_oxygen_unit": "J18",
+        "on_station_dissolved_oxygen_value": "J19",
+        "off_station_date_unit": "A22",
+        "off_station_date_value": "A23",
+        "off_station_time_value": "B23",
+        "off_station_temp_unit": "C22",
+        "off_station_temp_value": "C23",
+        "off_station_spec_cond_unit": "D22",
+        "off_station_spec_cond_value": "D23",
+        "off_station_depth_unit": "E22",
+        "off_station_depth_value": "E23",
+        "off_station_ph_value": "F23",
+        "off_station_orp_unit": "G22",
+        "off_station_orp_value": "G23",
+        "off_station_turbidity_value": "H23",
+        "off_station_chlor_value": "I23",
+        "off_station_dissolved_oxygen_unit": "J22",
+        "off_station_dissolved_oxygen_value": "J23",
+        "retrieval_date": "C25",
+        "retrieval_time_out_of_water": "C26",
+        "retrieval_depth_to_bottom_m": "C27",
+        "retrieval_location_latitude": "H26",
+        "retrieval_location_longitude": "H27",
+        "post_deployment_ice_bucket_expected_conductivity": "F29",
+        "post_deployment_ice_bucket_read_conductivity": "H29",
+        "post_deployment_ice_bucket_date_in_bucket": "B30",
+        "post_deployment_ice_bucket_time_in_bucket": "E30",
+        "post_deployment_ice_bucket_date_out_bucket": "G30",
+        "post_deployment_ice_bucket_time_out_bucket": "J30",
+        "post_deployment_ice_bucket_date_ice_added": "B31",
+        "post_deployment_ice_bucket_time_ice_added": "E31",
+        "post_deployment_ice_bucket_date_air_added": "G31",
+        "post_deployment_ice_bucket_time_air_added": "J31",
+        "post_deployment_ice_bucket_temp_1": "B32",
+        "post_deployment_ice_bucket_temp_date_1": "D32",
+        "post_deployment_ice_bucket_temp_time_1": "G32",
+        "post_deployment_ice_bucket_temp_2": "B33",
+        "post_deployment_ice_bucket_temp_date_2": "D33",
+        "post_deployment_ice_bucket_temp_time_2": "G33"
+    },
+    "sensor_log_time_v1": {
+        "deploy_date_time_et_tz": {
+            "type": "sep",
+            "date": "deploy_date",
+            "time": "time_in_water",
+            "zone": "US/Eastern"
+        },
+        "retrieval_date_time_et_tz": {
+            "type": "sep",
+            "date": "retrieval_date",
+            "time": "retrieval_time_out_of_water",
+            "zone": "US/Eastern"
+        },
+        "pre_deployment_ice_bucket_time_in_bucket_et_tz": {
+            "type": "sep",
+            "date": "pre_deployment_ice_bucket_date_in_bucket",
+            "time": "pre_deployment_ice_bucket_time_in_bucket",
+            "zone": "US/Eastern"
+        },
+        "pre_deployment_ice_bucket_date_time_out_bucket_et_tz": {
+            "type": "sep",
+            "date": "pre_deployment_ice_bucket_date_out_bucket",
+            "time": "pre_deployment_ice_bucket_time_out_bucket",
+            "zone": "US/Eastern"
+        },
+        "post_deployment_ice_bucket_date_time_in_bucket_et_tz": {
+            "type": "sep",
+            "date": "post_deployment_ice_bucket_date_in_bucket",
+            "time": "post_deployment_ice_bucket_time_in_bucket",
+            "zone": "US/Eastern"
+        },
+        "post_deployment_ice_bucket_date_time_out_bucket_et_tz": {
+            "type": "sep",
+            "date": "post_deployment_ice_bucket_date_out_bucket",
+            "time": "post_deployment_ice_bucket_time_out_bucket",
+            "zone": "US/Eastern"
+        }
+    }
+}

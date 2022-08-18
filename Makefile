@@ -4,3 +4,13 @@ setup-pre-commit:
 
 spin-up-postgres:
 	docker compose -f docker/docker-compose.yml up
+
+run-sensor:
+	poetry run python src/main.py --org epa --filepath data/msds/sensor --filetype sensor
+
+run-log-sheet:
+	poetry run python src/main.py --org epa --filepath data/msds/log-sheet --filetype log-sheet
+
+cleanup:
+	poetry run black src/
+	poetry run isort src/
