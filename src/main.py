@@ -10,7 +10,7 @@ def main():
     parser = argparse.ArgumentParser(description="Organization MSDS")
     parser.add_argument("--org", help="Organization", required=True)
     parser.add_argument("--filepath", help="Organization", required=True)
-    # parser.add_argument("--filetype", help="Organization", required=True)
+    parser.add_argument("--filetype", help="Organization", required=True)
 
     args = parser.parse_args()
 
@@ -30,9 +30,7 @@ def main():
 
     print(file_path_to_files)
 
-    # org_object.upload_files_to_data_warehouse(file_path_to_files, args.filetype)
-    org_object.upload_files_to_data_warehouse(file_path_to_files, "log-sheet")
-    org_object.upload_files_to_data_warehouse(file_path_to_files, "sensor")
+    org_object.upload_files_to_data_warehouse(file_path_to_files, args.filetype)
 
 
 if __name__ == "__main__":
