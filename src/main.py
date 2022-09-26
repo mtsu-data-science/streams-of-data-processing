@@ -9,8 +9,9 @@ def main():
 
     parser = argparse.ArgumentParser(description="Organization MSDS")
     parser.add_argument("--org", help="Organization", required=True)
-    parser.add_argument("--filepath", help="Organization", required=True)
-    parser.add_argument("--filetype", help="Organization", required=True)
+    parser.add_argument("--filepath", help="Path to Files", required=True)
+    parser.add_argument("--filetype", help="sensor or log-sheet", required=True)
+    parser.add_argument("--sensor", help="If applicable, minidot, ysi, or solinst", required=True)
 
     args = parser.parse_args()
 
@@ -19,7 +20,7 @@ def main():
     print(os.getcwd())
 
     if args.org == "epa":
-        org_object = OrganizationMsds()
+        org_object = OrganizationMsds(args.sensor)
 
     file_path_to_files = []
 
