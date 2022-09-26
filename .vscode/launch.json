@@ -5,23 +5,6 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "All",
-            "type": "python",
-            "request": "launch",
-            "program": "src/main.py",
-            "console": "integratedTerminal",
-            "justMyCode": true,
-            "args": [
-                "--org",
-                "epa",
-                "--filepath",
-                "data/msds/log-sheet"
-            ],
-            "env": {
-                "infra": "dev"
-            }
-        },
-        {
             "name": "Sensor Data",
             "type": "python",
             "request": "launch",
