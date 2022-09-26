@@ -64,6 +64,11 @@ def get_sensor_type(file_name):
         return "missing"
 
 
+def pre_validate_data_file(sensor_type, file_name, config):
+    print(f"Pre-Validate Data {sensor_type} {file_name}")
+    return "pass"
+
+
 def process_data_file(sensor_type, file_name, config):
     try:
         if sensor_type == "minidot":
@@ -83,6 +88,17 @@ def process_data_file(sensor_type, file_name, config):
         print("=========ERROR===============")
 
 
+def post_validate_data_file(sensor_type, file_name, config):
+    print(f"Post-Validate Data {sensor_type} {file_name}")
+
+    return "pass"
+
+
+def pre_validate_log_file(file_name, config):
+    print(f"Pre-Validate Log {file_name}")
+    return "pass"
+
+
 def process_log_file(file_name, config):
     try:
         if "YSI" in file_name and "DO NOT SUBMIT" not in file_name:
@@ -99,3 +115,8 @@ def process_log_file(file_name, config):
         print(f"file_name: {file_name}")
         print(e)
         print("=========ERROR===============")
+
+
+def post_validate_log_file(file_name, config):
+    print(f"Post-Validate Log {file_name}")
+    return "pass"
