@@ -9,6 +9,10 @@ import numpy as np
 
 from OrganizationProcessing.OrganizationMsds.msds_processing_util import (
     get_sensor_type,
+    post_validate_data_file,
+    post_validate_log_file,
+    pre_validate_data_file,
+    pre_validate_log_file,
     process_data_file,
     process_log_file,
 )
@@ -42,7 +46,6 @@ class OrganizationMsds:
         self.process_file_status[file_name] = {
             "s3_file_path": "pending",
             "upload_status": "pending",
-            "validation_status": "pending",
             "processing_status": "pending",
         }
 
@@ -99,8 +102,19 @@ class OrganizationMsds:
             st = time.time()
             try:
                 self.current_file = file_name
-                process_log_file(file_name, self.config)
-                self.update_file_status("processing_status", "processed")
+                self.update_file_status("processing_status", "running pre-validation")
+                pre_valid_status = pre_validate_log_file(file_name, self.config)
+                if pre_valid_status == "pass":
+                    self.update_file_status("processing_status", "file processing started")
+                    process_log_file(file_name, self.config)
+                    self.update_file_status("processing_status", "running post-validation")
+                    post_valid_status = post_validate_log_file(file_name, self.config)
+                    if post_valid_status == "pass":
+                        self.update_file_status("processing_status", "file processed")
+                    else:
+                        self.update_file_status("processing_status", "failed post-validation")
+                else:
+                    self.update_file_status("processing_status", "failed pre-validation")
             except Exception as e:
                 print(f"Error processing {file_name} - {e}")
                 self.update_file_status("processing_status", f"failed - {e}")
@@ -125,8 +139,20 @@ class OrganizationMsds:
             try:
                 self.current_file = file_name
                 sensor_type = get_sensor_type(file_name)
-                process_data_file(sensor_type, file_name, self.config)
-                self.update_file_status("processing_status", "processed")
+                self.update_file_status("processing_status", "running pre-validation")
+                self.update_file_status("processing_status", "processing")
+                pre_valid_status = pre_validate_data_file(sensor_type, file_name, self.config)
+                if pre_valid_status == "pass":
+                    self.update_file_status("processing_status", "file processing started")
+                    process_data_file(sensor_type, file_name, self.config)
+                    self.update_file_status("processing_status", "running post-validation")
+                    post_valid_status = post_validate_data_file(sensor_type, file_name, self.config)
+                    if post_valid_status == "pass":
+                        self.update_file_status("processing_status", "file processed")
+                    else:
+                        self.update_file_status("processing_status", "failed - post-validation")
+                else:
+                    self.update_file_status("processing_status", "failed - pre-validation")
             except Exception as e:
                 print(f"Error processing {file_name} - {e}")
                 self.update_file_status("processing_status", f"failed - {e}")
