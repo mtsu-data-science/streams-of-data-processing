@@ -1,3 +1,5 @@
+export infra=dev
+
 setup-pre-commit:
 	pip install pre-commit
 	pre-commit install
@@ -10,6 +12,8 @@ run-sensor:
 
 run-log-sheet:
 	poetry run python src/main.py --org epa --filepath data/msds/log-sheet --filetype log-sheet
+
+run-both: run-sensor run-log-sheet
 
 cleanup:
 	poetry run black src/
