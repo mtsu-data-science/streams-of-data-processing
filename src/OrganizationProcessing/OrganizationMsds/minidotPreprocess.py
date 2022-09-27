@@ -15,6 +15,10 @@ from OrganizationProcessing.org_processing_util import (
 msds_staged_bucket_path = "mtsu-msds-data-lake-staged/source_multi_sensor_data_system"
 
 
+def preValidateMinidotDataFile(event, config):
+    pass
+
+
 def preprocessMinidotData(event, config):
     """Lambda function for pre-processing YSI excel files.
     Config for this can be found at `pre-processing-config/pre-processing-ysi.json`
@@ -60,6 +64,14 @@ def preprocessMinidotData(event, config):
     )
 
     return {"file_name": event["file_name"]}
+
+
+def postValidateMinidotDataFile(event, config):
+    pass
+
+
+def preValidateMinidotLogFile(event, config):
+    pass
 
 
 def preprocessMinidotLogFile(event, config):
@@ -150,3 +162,7 @@ def preprocessMinidotLogFile(event, config):
     )
 
     return {"file_name": event["file_name"]}
+
+
+def postValidateMinidotLogFile(event, config):
+    pass

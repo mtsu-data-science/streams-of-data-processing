@@ -8,7 +8,6 @@ import awswrangler as wr
 import numpy as np
 
 from OrganizationProcessing.OrganizationMsds.msds_processing_util import (
-    get_sensor_type,
     post_validate_data_file,
     post_validate_log_file,
     pre_validate_data_file,
@@ -21,10 +20,10 @@ pp = pprint.PrettyPrinter()
 
 
 class OrganizationMsds:
-    def __init__(self):
+    def __init__(self, sensor):
         self.s3_bucket_base = f"s3://{os.environ['infra']}-mtsu-msds-data-lake-source/test"
         self.s3_bucket_log = f"{self.s3_bucket_base}/log-sheet-files"
-        self.s3_bucket_sensor = f"{self.s3_bucket_base}/sensor-files"
+        self.s3_bucket_data = f"{self.s3_bucket_base}/data-files"
         # TODO: Transition configuration to database
         with open(Path(__file__).parent / "../../../pre-processing-config/pre-processing-minidot.json") as f:
             self.minidot_config = json.load(f)
@@ -39,6 +38,8 @@ class OrganizationMsds:
 
         self.process_file_status = {}
         self.current_file = ""
+
+        self.sensor = sensor
 
     def add_file_to_file_status(self, file_name):
         print(file_name)
@@ -63,7 +64,7 @@ class OrganizationMsds:
         if file_type == "log-sheet":
             print("Processing log-sheet")
             self.manage_log_sheet_processing()
-        elif file_type == "sensor":
+        elif file_type == "data":
             print("Processing sensor data")
             self.manage_sensor_processing()
 
@@ -72,8 +73,8 @@ class OrganizationMsds:
     def process_upload_file_to_s3(self, local_file_path, file_type):
         if file_type == "log-sheet":
             s3_bucket = self.s3_bucket_log
-        elif file_type == "sensor":
-            s3_bucket = self.s3_bucket_sensor
+        elif file_type == "data":
+            s3_bucket = self.s3_bucket_data
         else:
             raise ValueError(f"Invalid file type: {file_type}")
 
@@ -103,12 +104,12 @@ class OrganizationMsds:
             try:
                 self.current_file = file_name
                 self.update_file_status("processing_status", "running pre-validation")
-                pre_valid_status = pre_validate_log_file(file_name, self.config)
+                pre_valid_status = pre_validate_log_file(self.sensor, file_name, self.config)
                 if pre_valid_status == "pass":
                     self.update_file_status("processing_status", "file processing started")
-                    process_log_file(file_name, self.config)
+                    process_log_file(self.sensor, file_name, self.config)
                     self.update_file_status("processing_status", "running post-validation")
-                    post_valid_status = post_validate_log_file(file_name, self.config)
+                    post_valid_status = post_validate_log_file(self.sensor, file_name, self.config)
                     if post_valid_status == "pass":
                         self.update_file_status("processing_status", "file processed")
                     else:
@@ -138,15 +139,14 @@ class OrganizationMsds:
             st = time.time()
             try:
                 self.current_file = file_name
-                sensor_type = get_sensor_type(file_name)
                 self.update_file_status("processing_status", "running pre-validation")
                 self.update_file_status("processing_status", "processing")
-                pre_valid_status = pre_validate_data_file(sensor_type, file_name, self.config)
+                pre_valid_status = pre_validate_data_file(self.sensor, file_name, self.config)
                 if pre_valid_status == "pass":
                     self.update_file_status("processing_status", "file processing started")
-                    process_data_file(sensor_type, file_name, self.config)
+                    process_data_file(self.sensor, file_name, self.config)
                     self.update_file_status("processing_status", "running post-validation")
-                    post_valid_status = post_validate_data_file(sensor_type, file_name, self.config)
+                    post_valid_status = post_validate_data_file(self.sensor, file_name, self.config)
                     if post_valid_status == "pass":
                         self.update_file_status("processing_status", "file processed")
                     else:

@@ -3,7 +3,14 @@ from pathlib import Path
 
 import awswrangler as wr
 
-from OrganizationProcessing.OrganizationMsds.minidotPreprocess import preprocessMinidotData, preprocessMinidotLogFile
+from OrganizationProcessing.OrganizationMsds.minidotPreprocess import (
+    postValidateMinidotDataFile,
+    postValidateMinidotLogFile,
+    preprocessMinidotData,
+    preprocessMinidotLogFile,
+    preValidateMinidotDataFile,
+    preValidateMinidotLogFile,
+)
 from OrganizationProcessing.OrganizationMsds.solinstPreprocess import preprocessSolinstData, preprocessSolinstLogFile
 from OrganizationProcessing.OrganizationMsds.ysiPreprocess import preprocessYsiData, preprocessYsiLogFile
 
@@ -31,83 +38,52 @@ def get_full_file_name(file):
         raise
 
 
-def get_sensor_type(file_name):
-    query = f"""
-    with sensor_data as (
-    select sensor_data_file_name, manufacturer_sensor
-    from sensor_log_minidot_schema_v1
-    union
-    select sensor_data_file_name, manufacturer_sensor
-    from sensor_log_minidot_schema_v2
-    union
-    select sensor_data_file_name, manufacturer_sensor
-    from sensor_log_ysi_schema_v1
-    union
-    select sensor_data_file_name, manufacturer_sensor
-    from sensor_log_ysi_schema_v2
-    union
-    select sensor_data_file_name, manufacturer_sensor
-    from sensor_log_solinst_schema_v1
-    )
-    select manufacturer_sensor
-    from sensor_data
-    where sensor_data_file_name like '{file_name}'
-    """
-
-    df = wr.athena.read_sql_query(query, database=f"{os.environ['infra']}_source_multi_sensor_data_system")
-
-    if df.shape[0] == 1:
-        return df.loc[0, "manufacturer_sensor"]
-    elif df.shape[0] > 1:
-        raise Exception(f"Duplicate Log Sheets FOr: {file_name} | DF Shape: {df.shape}")
-    elif df.shape[0] == 0:
-        return "missing"
+def pre_validate_data_file(sensor, file_name, config):
+    print(f"Pre-Validate Data {sensor} {file_name}")
+    if sensor == "minidot":
+        return preValidateMinidotDataFile(event={"file_name": file_name}, config=config)
 
 
-def pre_validate_data_file(sensor_type, file_name, config):
-    print(f"Pre-Validate Data {sensor_type} {file_name}")
-    return "pass"
-
-
-def process_data_file(sensor_type, file_name, config):
+def process_data_file(sensor, file_name, config):
     try:
-        if sensor_type == "minidot":
+        if sensor == "minidot":
             result = preprocessMinidotData(event={"file_name": file_name}, config=config)
             print(result)
-        if sensor_type == "solinst":
+        if sensor == "solinst":
             result = preprocessSolinstData(event={"file_name": file_name}, config=config)
             print(result)
-        if sensor_type == "ysi":
+        if sensor == "ysi":
             result = preprocessYsiData(event={"file_name": file_name}, config=config)
             print(result)
     except Exception as e:
         print("=========ERROR===============")
-        print(f"sensor_type: {sensor_type}")
+        print(f"sensor: {sensor}")
         print(f"file_name: {file_name}")
         print(e)
         print("=========ERROR===============")
 
 
-def post_validate_data_file(sensor_type, file_name, config):
-    print(f"Post-Validate Data {sensor_type} {file_name}")
+def post_validate_data_file(sensor, file_name, config):
+    print(f"Post-Validate Data {sensor} {file_name}")
+    if sensor == "minidot":
+        return postValidateMinidotDataFile(event={"file_name": file_name}, config=config)
 
-    return "pass"
 
-
-def pre_validate_log_file(file_name, config):
+def pre_validate_log_file(sensor, file_name, config):
     print(f"Pre-Validate Log {file_name}")
-    return "pass"
+    if sensor == "minidot":
+        return preValidateMinidotLogFile(event={"file_name": file_name}, config=config)
 
 
-def process_log_file(file_name, config):
+def process_log_file(sensor, file_name, config):
     try:
-        if "YSI" in file_name and "DO NOT SUBMIT" not in file_name:
+        if sensor == "ysi":
             result = preprocessYsiLogFile(event={"file_name": file_name}, config=config)
             print(result)
-        if "PME" in file_name and "DO NOT SUBMIT" not in file_name:
+        if sensor == "minidot":
             result = preprocessMinidotLogFile(event={"file_name": file_name}, config=config)
             print(result)
-        if "Solinst" in file_name:
+        if sensor == "solinst":
             result = preprocessSolinstLogFile(event={"file_name": file_name}, config=config)
             print(result)
     except Exception as e:
@@ -117,6 +93,7 @@ def process_log_file(file_name, config):
         print("=========ERROR===============")
 
 
-def post_validate_log_file(file_name, config):
+def post_validate_log_file(sensor, file_name, config):
     print(f"Post-Validate Log {file_name}")
-    return "pass"
+    if sensor == "minidot":
+        return postValidateMinidotLogFile(event={"file_name": file_name}, config=config)
