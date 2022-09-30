@@ -29,7 +29,7 @@ run-log-sheet-solinst:
 
 run-log-sheet: run-log-sheet-ysi run-log-sheet-minidot run-log-sheet-solinst
 
-run-both: run-sensor run-log-sheet
+run-both: run-sensor-minidot run-log-sheet-minidot
 
 cleanup:
 	poetry run black src/

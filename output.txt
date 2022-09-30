@@ -1,0 +1,55 @@
+poetry run python src/main.py --org epa --filepath data/msds/data/minidot --filetype data --sensor minidot
+/Users/aantonison/workspace/streams-of-data-processing
+['/Users/aantonison/workspace/streams-of-data-processing/data/msds/data/minidot/OC_2A PME minidot 296600 USGS DO 4 9_25_2020.TXT']
+OC_2A PME minidot 296600 USGS DO 4 9_25_2020.TXT: Setting: s3_file_path to s3://dev-mtsu-msds-data-lake-source/test/data-files/OC_2A PME minidot 296600 USGS DO 4 9_25_2020.TXT
+OC_2A PME minidot 296600 USGS DO 4 9_25_2020.TXT: Setting: upload_status to uploaded
+Processing sensor data
+['OC_2A PME minidot 296600 USGS DO 4 9_25_2020.TXT']
+OC_2A PME minidot 296600 USGS DO 4 9_25_2020.TXT: Setting: processing_status to running pre-validation
+OC_2A PME minidot 296600 USGS DO 4 9_25_2020.TXT: Setting: processing_status to processing
+Pre-Validate Data minidot OC_2A PME minidot 296600 USGS DO 4 9_25_2020.TXT
+Pre-validation status: pass
+OC_2A PME minidot 296600 USGS DO 4 9_25_2020.TXT: Setting: processing_status to file processing started
+{'file_name': 'OC_2A PME minidot 296600 USGS DO 4 9_25_2020.TXT'}
+OC_2A PME minidot 296600 USGS DO 4 9_25_2020.TXT: Setting: processing_status to running post-validation
+Post-Validate Data minidot OC_2A PME minidot 296600 USGS DO 4 9_25_2020.TXT
+Post-validation status: pass
+OC_2A PME minidot 296600 USGS DO 4 9_25_2020.TXT: Setting: processing_status to file processing succeeded
+0 remaining...estimated minutes remaining 0.0
+{'OC_2A PME minidot 296600 USGS DO 4 9_25_2020.TXT': {'processing_status': 'file '
+                                                                           'processing '
+                                                                           'succeeded',
+                                                      's3_file_path': 's3://dev-mtsu-msds-data-lake-source/test/data-files/OC_2A '
+                                                                      'PME '
+                                                                      'minidot '
+                                                                      '296600 '
+                                                                      'USGS DO '
+                                                                      '4 '
+                                                                      '9_25_2020.TXT',
+                                                      'upload_status': 'uploaded'}}
+poetry run python src/main.py --org epa --filepath data/msds/log-sheet/minidot --filetype log-sheet --sensor minidot
+/Users/aantonison/workspace/streams-of-data-processing
+['/Users/aantonison/workspace/streams-of-data-processing/data/msds/log-sheet/minidot/PME Use Digital Record OC2A Summer 2020.xlsx']
+PME Use Digital Record OC2A Summer 2020.xlsx: Setting: s3_file_path to s3://dev-mtsu-msds-data-lake-source/test/log-sheet-files/PME Use Digital Record OC2A Summer 2020.xlsx
+PME Use Digital Record OC2A Summer 2020.xlsx: Setting: upload_status to uploaded
+Processing log-sheet
+['PME Use Digital Record OC2A Summer 2020.xlsx']
+PME Use Digital Record OC2A Summer 2020.xlsx: Setting: processing_status to running pre-validation
+Pre-Validate Log PME Use Digital Record OC2A Summer 2020.xlsx
+Pre-validation status: pass
+PME Use Digital Record OC2A Summer 2020.xlsx: Setting: processing_status to file processing started
+{'file_name': 'PME Use Digital Record OC2A Summer 2020.xlsx'}
+PME Use Digital Record OC2A Summer 2020.xlsx: Setting: processing_status to running post-validation
+Post-Validate Log PME Use Digital Record OC2A Summer 2020.xlsx
+Post validation status: pass
+PME Use Digital Record OC2A Summer 2020.xlsx: Setting: processing_status to file processing succeeded
+0 remaining...estimated minutes remaining 0.0
+{'PME Use Digital Record OC2A Summer 2020.xlsx': {'processing_status': 'file '
+                                                                       'processing '
+                                                                       'succeeded',
+                                                  's3_file_path': 's3://dev-mtsu-msds-data-lake-source/test/log-sheet-files/PME '
+                                                                  'Use Digital '
+                                                                  'Record OC2A '
+                                                                  'Summer '
+                                                                  '2020.xlsx',
+                                                  'upload_status': 'uploaded'}}

@@ -1,8 +1,3 @@
-import os
-from pathlib import Path
-
-import awswrangler as wr
-
 from OrganizationProcessing.OrganizationMsds.minidotPreprocess import (
     postValidateMinidotDataFile,
     postValidateMinidotLogFile,
@@ -13,29 +8,6 @@ from OrganizationProcessing.OrganizationMsds.minidotPreprocess import (
 )
 from OrganizationProcessing.OrganizationMsds.solinstPreprocess import preprocessSolinstData, preprocessSolinstLogFile
 from OrganizationProcessing.OrganizationMsds.ysiPreprocess import preprocessYsiData, preprocessYsiLogFile
-
-
-def get_file_names(file_list):
-    # this will get the name and pull out the name
-    # regardless of how many extensions there are like name.snappy.parquet
-    return [Path(x).name for x in file_list]
-
-
-def return_unprocessed_files(source_list, staged_list):
-    if staged_list != []:
-        return list(set(source_list).difference(staged_list))
-    else:
-        return []
-
-
-def get_full_file_name(file):
-    file_list = wr.s3.list_objects(f"s3://{os.environ['infra']}-mtsu-msds-data-lake-source/*/{file}*")
-
-    if len(file_list) == 1:
-        return Path(file_list[0]).name
-    else:
-        print("Multiple files match this name")
-        raise
 
 
 def pre_validate_data_file(sensor, file_name, config):

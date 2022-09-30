@@ -16,7 +16,12 @@ msds_staged_bucket_path = "mtsu-msds-data-lake-staged/source_multi_sensor_data_s
 
 
 def preValidateMinidotDataFile(event, config):
-    pass
+    """
+    This is a placeholder function for pre-validating minidot data files.
+    Over time I will populate this but for now whenever the function it called,
+    it simply returns pass.
+    """
+    return "pass"
 
 
 def preprocessMinidotData(event, config):
@@ -67,11 +72,21 @@ def preprocessMinidotData(event, config):
 
 
 def postValidateMinidotDataFile(event, config):
-    pass
+    """
+    This is a placeholder function for post-validating minidot data files.
+    Over time I will populate this but for now whenever the function it called,
+    it simply returns pass.
+    """
+    return "pass"
 
 
 def preValidateMinidotLogFile(event, config):
-    pass
+    """
+    This is a placeholder function for pre-validating minidot log-sheet files.
+    Over time I will populate this but for now whenever the function it called,
+    it simply returns pass.
+    """
+    return "pass"
 
 
 def preprocessMinidotLogFile(event, config):
@@ -165,4 +180,9 @@ def preprocessMinidotLogFile(event, config):
 
 
 def postValidateMinidotLogFile(event, config):
-    pass
+    """
+    This is a placeholder function for post-validating minidot log-sheet files.
+    Over time I will populate this but for now whenever the function it called,
+    it simply returns pass.
+    """
+    return "pass"

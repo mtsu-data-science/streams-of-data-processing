@@ -1,7 +1,6 @@
 import argparse
 import os
 
-from database.setup_database import setup_database
 from OrganizationProcessing.OrganizationMsds.OrganizationMsds import OrganizationMsds
 
 
@@ -14,8 +13,6 @@ def main():
     parser.add_argument("--sensor", help="If applicable, minidot, ysi, or solinst", required=True)
 
     args = parser.parse_args()
-
-    setup_database()
 
     print(os.getcwd())
 
