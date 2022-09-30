@@ -15,6 +15,15 @@ from OrganizationProcessing.org_processing_util import (
 msds_staged_bucket_path = "mtsu-msds-data-lake-staged/source_multi_sensor_data_system"
 
 
+def preValidateMinidotDataFile(event, config):
+    """
+    This is a placeholder function for pre-validating minidot data files.
+    Over time I will populate this but for now whenever the function it called,
+    it simply returns pass.
+    """
+    return "pass"
+
+
 def preprocessMinidotData(event, config):
     """Lambda function for pre-processing YSI excel files.
     Config for this can be found at `pre-processing-config/pre-processing-ysi.json`
@@ -60,6 +69,24 @@ def preprocessMinidotData(event, config):
     )
 
     return {"file_name": event["file_name"]}
+
+
+def postValidateMinidotDataFile(event, config):
+    """
+    This is a placeholder function for post-validating minidot data files.
+    Over time I will populate this but for now whenever the function it called,
+    it simply returns pass.
+    """
+    return "pass"
+
+
+def preValidateMinidotLogFile(event, config):
+    """
+    This is a placeholder function for pre-validating minidot log-sheet files.
+    Over time I will populate this but for now whenever the function it called,
+    it simply returns pass.
+    """
+    return "pass"
 
 
 def preprocessMinidotLogFile(event, config):
@@ -150,3 +177,12 @@ def preprocessMinidotLogFile(event, config):
     )
 
     return {"file_name": event["file_name"]}
+
+
+def postValidateMinidotLogFile(event, config):
+    """
+    This is a placeholder function for post-validating minidot log-sheet files.
+    Over time I will populate this but for now whenever the function it called,
+    it simply returns pass.
+    """
+    return "pass"

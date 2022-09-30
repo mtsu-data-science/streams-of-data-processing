@@ -13,3 +13,5 @@ poetry run python src/main.py
 ```
 
 This will prompt you to select `epa`,`usgs`, or `tbi`.
+
+The sample print statements when running the app can be seen in [output.txt](./output.txt)
